@@ -40,6 +40,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     LocationManager locationManager;
     LocationListener locationListener;
+     static ArrayList<String> lattitude;
+     static ArrayList<String> longitude;
     public void centerMapOnLocation(Location location,String title){
         if(location!=null) {
             LatLng user = new LatLng(location.getLatitude(), location.getLongitude());
@@ -99,16 +101,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     MainActivity.locations.add(latLng);
                     MainActivity.arrayAdapter.notifyDataSetChanged();
 
-                    ArrayList<String> lattitude=new ArrayList<String>();
-                    ArrayList<String> longitude=new ArrayList<String>();
+                     lattitude=new ArrayList<String>();
+                     longitude=new ArrayList<String>();
                     for(LatLng coord:MainActivity.locations){
                         lattitude.add(Double.toString(coord.latitude));
                         longitude.add(Double.toString(coord.longitude));
                     }
                     try {
-                        sharedPreferences.edit().putString("place",ObjectSerializer.serialize(MainActivity.places)).apply();
-                        sharedPreferences.edit().putString("lats",ObjectSerializer.serialize(lattitude)).apply();
-                        sharedPreferences.edit().putString("lons",ObjectSerializer.serialize(longitude)).apply();
+                        sharedPreferences.edit().putString("places",ObjectSerializer.serialize(MainActivity.places)).apply();
+                        sharedPreferences.edit().putString("latt",ObjectSerializer.serialize(lattitude)).apply();
+                        sharedPreferences.edit().putString("long",ObjectSerializer.serialize(longitude)).apply();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

@@ -30,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences=this.getSharedPreferences("com.example.memorable_places", Context.MODE_PRIVATE);
         ArrayList<String> lattitude=new ArrayList<String>();
         ArrayList<String> longitude=new ArrayList<String>();
-        /*places.clear();
-        locations.clear();*/
+        places.clear();
+        locations.clear();
         try{
-            places=(ArrayList<String>)ObjectSerializer.deserialize(sharedPreferences.getString("place",ObjectSerializer.serialize(new ArrayList<String>())));
-            lattitude=(ArrayList<String>)ObjectSerializer.deserialize(sharedPreferences.getString("lats",ObjectSerializer.serialize(new ArrayList<String>())));
-            longitude=(ArrayList<String>)ObjectSerializer.deserialize(sharedPreferences.getString("lons",ObjectSerializer.serialize(new ArrayList<String>())));
+            places=(ArrayList<String>)ObjectSerializer.deserialize(sharedPreferences.getString("places",ObjectSerializer.serialize(new ArrayList<String>())));
+            lattitude=(ArrayList<String>)ObjectSerializer.deserialize(sharedPreferences.getString("latt",ObjectSerializer.serialize(new ArrayList<String>())));
+            longitude=(ArrayList<String>)ObjectSerializer.deserialize(sharedPreferences.getString("long",ObjectSerializer.serialize(new ArrayList<String>())));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -68,5 +68,7 @@ public class MainActivity extends AppCompatActivity {
         editor.remove("lats");
         editor.remove("lons");
         editor.commit();
+        MapsActivity.lattitude.clear();
+        MapsActivity.longitude.clear();
     }*/
 }
